@@ -20,53 +20,59 @@ public class CategoryResponse {
     @SerializedName("articles")
     private List<Object> mArticles = new ArrayList<Object>();
     @SerializedName("categories")
-    private List<Category> mCategories = new ArrayList<Category>();
+    private List<Category> mCategoryList = new ArrayList<Category>();
 
     public Integer getId() {
         return mId;
     }
 
-    public void setId(Integer id) {
+    public CategoryResponse setId(Integer id) {
         this.mId = id;
+        return this;
     }
 
     public String getName() {
         return mName;
     }
 
-    public void setName(String name) {
+    public CategoryResponse setName(String name) {
         this.mName = name;
+        return this;
     }
 
     public Object getParentId() {
         return mParentId;
     }
 
-    public void setParentId(Object parentId) {
+    public CategoryResponse setParentId(Object parentId) {
         this.mParentId = parentId;
+        return this;
     }
 
     public Integer getApplicationId() {
         return mApplicationId;
     }
 
-    public void setApplicationId(Integer applicationId) {
+    public CategoryResponse setApplicationId(Integer applicationId) {
         this.mApplicationId = applicationId;
+        return this;
     }
 
     public List<Object> getArticles() {
         return mArticles;
     }
 
-    public void setArticles(List<Object> articles) {
+    public CategoryResponse setArticles(List<Object> articles) {
         this.mArticles = articles;
+        return this;
     }
 
-    public List<Category> getCategories() {
-        return mCategories;
+    public List<Category> getCategoryList() {
+        return mCategoryList;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.mCategories = categories;
+    public CategoryResponse setCategoryList(List<Category> categoryList) {
+        this.mCategoryList = categoryList;
+        return this;
     }
 }

@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName;
  * Created by barikos on 20.11.16.
  */
 public class Category {
+
     @SerializedName("id")
     private Integer mId;
     @SerializedName("name")
     private String mName;
-
 
     public Integer getId() {
         return mId;
     }
 
     public Category setId(Integer id) {
-        mId = id;
+        this.mId = id;
         return this;
     }
 
@@ -26,7 +26,7 @@ public class Category {
     }
 
     public Category setName(String name) {
-        mName = name;
+        this.mName = name;
         return this;
     }
 }

@@ -2,6 +2,8 @@ package com.main.mygym.api;
 
 import com.main.mygym.api.response.CategoryResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -12,6 +14,6 @@ import retrofit2.http.GET;
 public interface ExercisesService {
 
     @GET("api/v1/application/gym_exercises/category")
-    Call<CategoryResponse> getCategories();
+    Call<List<CategoryResponse>> getCategories();
 
 }

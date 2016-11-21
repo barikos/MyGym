@@ -1,13 +1,16 @@
 package com.main.mygym.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.main.mygym.Const;
 import com.main.mygym.R;
 import com.main.mygym.adapter.GridItemAdapter;
 import com.main.mygym.ui.DayModel;
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, R.string.creating, Toast.LENGTH_SHORT).show();
                         break;
                     default:
-
+                        TextView textView = (TextView)view.findViewById(R.id.gird_item_txt);
+                        String text = textView.getText().toString();
+                        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,DayActivity.class).putExtra(Const.KEY_IN_DAY,text));
+                        break;
                 }
             }
         });

@@ -27,13 +27,13 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.rec_view_txt);
+            textView = (TextView) itemView.findViewById(R.id.list_view_txt);
         }
     }
 
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_item,parent,false);
         return new CategoryViewHolder(view);
     }
 

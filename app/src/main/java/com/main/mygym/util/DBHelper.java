@@ -31,6 +31,7 @@ public class DBHelper extends SQLiteOpenHelper{
             String.valueOf(R.string.friday),
             String.valueOf(R.string.saturday),
             String.valueOf(R.string.sunday)};
+    String[] mas2 = {"GYM", "GYM2"};
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,6 +52,13 @@ public class DBHelper extends SQLiteOpenHelper{
         db.execSQL(String.format("create table %s(%s integer primary key autoincrement, %s text, %s integer, " +
                 "foreign key (%s) references %s(%s))",
                 TABLE_EXERCISES,KEY_EX_ID,KEY_EX_NAME,KEY_EX_DAY_ID,KEY_EX_DAY_ID,TABLE_DAYS,KEY_DAY_ID));
+        for (int i=0; i<2; i++){
+            cv.clear();
+            cv.put(KEY_EX_ID, i);
+            cv.put(KEY_EX_NAME,mas2[i]);
+            cv.put(KEY_EX_DAY_ID,1);
+            db.insert(TABLE_EXERCISES,null,cv);
+        }
     }
 
     @Override

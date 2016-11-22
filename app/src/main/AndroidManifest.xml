@@ -21,6 +21,12 @@
         </activity>
         <activity android:name=".ui.activity.CategoriesActivity">
         </activity>
+
+        <provider
+            android:authorities="com.main.mygym.provider.Exercises"
+            android:name=".provider.CategoryContentProvider"
+            android:readPermission="true"
+            android:writePermission="true"/>
     </application>
 
 </manifest>

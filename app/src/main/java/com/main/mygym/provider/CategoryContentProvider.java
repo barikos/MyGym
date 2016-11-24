@@ -83,6 +83,15 @@ public class CategoryContentProvider extends ContentProvider{
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         mDB = mDBHelper.getWritableDatabase();
+        switch (uriMather.match(uri)) {
+            case URI_EXERCISES:
+                //do nothing
+                break;
+            case URI_EXERCISE_ID:
+                String id = uri.getPathSegments().get(1);
+                selection = DBHelper.KEY_EX_ID + "=" + id +
+                        (!TextUtils.isEmpty(selection) ? "AND (" + selection + ')' : "");
+        }
         int cnt = mDB.delete(DBHelper.TABLE_EXERCISES, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(uri,null);
         return cnt;

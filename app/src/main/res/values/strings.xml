@@ -13,5 +13,11 @@
     <string name="creating">Функционал недоступен</string>
 
     <string name="add">Добавить</string>
+    <string name="txt_dialog_day_1">Вы собираетесь удалить категорию </string>
+    <string name="txt_dialog_day_2"> у которой id </string>
+
+    <string name="txt_placeholder_begin">Начни прямо сейчас!</string>
+    <string name="txt_placeholder_choice">Выбери упражнения для занятий и создай себе идеальное тело</string>
+    <string name="txt_btn_placeholder">Добавить упражнение</string>
 
 </resources>

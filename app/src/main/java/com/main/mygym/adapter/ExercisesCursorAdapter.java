@@ -17,9 +17,10 @@ import com.main.mygym.util.DBHelper;
 public class ExercisesCursorAdapter extends CursorAdapter{
 
     private LayoutInflater mInflater;
-    static class ViewHolder{
-        TextView textView;
-        long id;
+
+    public static class ViewHolder {
+        public TextView textView;
+        public long id;
     }
 
     public ExercisesCursorAdapter(Context context, Cursor c, int flags) {
@@ -31,7 +32,7 @@ public class ExercisesCursorAdapter extends CursorAdapter{
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         View view = mInflater.inflate(R.layout.list_view_item, parent, false);
         ViewHolder holder = new ViewHolder();
-        holder.textView = (TextView)view.findViewById(R.id.list_view_txt);
+        holder.textView = (TextView) view.findViewById(R.id.txt_list_view_item);
         view.setTag(holder);
         return view;
     }

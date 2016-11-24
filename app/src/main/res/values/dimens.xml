@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="txt_grid_item">25sp</dimen>
+    <dimen name="txt_grid_item">20sp</dimen>
     <dimen name="txt_recycler_item">20sp</dimen>
+
+    <dimen name="day_dialog_corner">10dp</dimen>
 </resources>

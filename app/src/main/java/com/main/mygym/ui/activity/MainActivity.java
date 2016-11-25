@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         TextView textView = (TextView)view.findViewById(R.id.gird_item_txt);
                         String text = textView.getText().toString();
-                        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this,DayActivity.class).putExtra(Const.KEY_IN_DAY,text));
+                        startActivity(new Intent(MainActivity.this, DayActivity.class).putExtra(Const.KEY_EXTRA_DAY, text));
                         break;
                 }
             }

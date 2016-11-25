@@ -21,6 +21,7 @@ public class ExercisesCursorAdapter extends CursorAdapter{
     public static class ViewHolder {
         public TextView textView;
         public long id;
+        public String day;
     }
 
     public ExercisesCursorAdapter(Context context, Cursor c, int flags) {
@@ -41,10 +42,12 @@ public class ExercisesCursorAdapter extends CursorAdapter{
     public void bindView(View view, Context context, Cursor cursor) {
         long id = cursor.getLong(cursor.getColumnIndex(DBHelper.KEY_EX_ID));
         String name = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_EX_NAME));
+        String day = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_EX_DAY));
         ViewHolder holder  =   (ViewHolder)    view.getTag();
         if (holder != null){
             holder.textView.setText(name);
             holder.id = id;
+            holder.day = day;
         }
     }
 }

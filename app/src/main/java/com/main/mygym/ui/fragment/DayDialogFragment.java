@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.main.mygym.Const;
 import com.main.mygym.R;
-import com.main.mygym.provider.CategoryContentProvider;
+import com.main.mygym.provider.Contract;
 
 /**
  * Created by barikos on 22.11.16.
@@ -84,9 +84,8 @@ public class DayDialogFragment extends DialogFragment implements View.OnClickLis
                 dismiss();
                 break;
             case R.id.img_dialog_day_delete:
-                Uri uri = Uri.parse(CategoryContentProvider.CONTENT_URI + "/" + mId);
+                Uri uri = Uri.parse(Contract.CONTENT_URI + "/" + mId);
                 int i = getContext().getContentResolver().delete(uri, null, null);
-                i++;
                 dismiss();
                 break;
         }

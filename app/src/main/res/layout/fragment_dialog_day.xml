@@ -11,7 +11,7 @@
         android:id="@+id/txt_dialog_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/txt_grid_item"
+        android:textColor="@color/txt_global"
         android:textSize="@dimen/txt_grid_item"/>
 
     <ImageView

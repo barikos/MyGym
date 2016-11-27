@@ -34,7 +34,6 @@ public class ExercisesDownloader extends AsyncTask<Void, Void, List<Category>> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

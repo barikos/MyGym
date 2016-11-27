@@ -1,6 +1,5 @@
 package com.main.mygym.util;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by barikos on 20.11.16.
  */
-public class DBHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "gymDB";
@@ -24,8 +23,6 @@ public class DBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        ContentValues cv = new ContentValues();
-
         db.execSQL(String.format("create table %s(%s integer primary key autoincrement, %s text, " +
                 " %s text)", TABLE_EXERCISES, KEY_EX_ID, KEY_EX_NAME, KEY_EX_DAY));
     }

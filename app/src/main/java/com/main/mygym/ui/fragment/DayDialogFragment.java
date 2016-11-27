@@ -71,6 +71,7 @@ public class DayDialogFragment extends DialogFragment implements View.OnClickLis
                 .append(getString(R.string.txt_dialog_day_1))
                 .append(mName)
                 .append(getString(R.string.txt_dialog_day_2))
+                .append(" ")
                 .append(mId);
         mTextView.setText(text);
         mDelete.setOnClickListener(this);
@@ -85,7 +86,7 @@ public class DayDialogFragment extends DialogFragment implements View.OnClickLis
                 break;
             case R.id.img_dialog_day_delete:
                 Uri uri = Uri.parse(Contract.CONTENT_URI + "/" + mId);
-                int i = getContext().getContentResolver().delete(uri, null, null);
+                getContext().getContentResolver().delete(uri, null, null);
                 dismiss();
                 break;
         }

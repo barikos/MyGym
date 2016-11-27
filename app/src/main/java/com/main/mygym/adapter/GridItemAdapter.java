@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.main.mygym.R;
-import com.main.mygym.ui.DayModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,20 +18,24 @@ import java.util.List;
  */
 public class GridItemAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private List<DayModel> mDataList;
+    private final List<Item> mItems = new ArrayList<Item>();
     private LayoutInflater mLayoutInflater;
 
-
-    public GridItemAdapter(Context context, List<DayModel> dataList) {
-        mContext = context;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mDataList = dataList;
+    public GridItemAdapter(Context context) {
+        mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mItems.add(new Item(context.getString(R.string.monday), R.drawable.monday));
+        mItems.add(new Item(context.getString(R.string.tuesday), R.drawable.tuesday));
+        mItems.add(new Item(context.getString(R.string.wednesday), R.drawable.wednesday));
+        mItems.add(new Item(context.getString(R.string.thursday), R.drawable.thursday));
+        mItems.add(new Item(context.getString(R.string.friday), R.drawable.friday));
+        mItems.add(new Item(context.getString(R.string.saturday), R.drawable.saturday));
+        mItems.add(new Item(context.getString(R.string.sunday), R.drawable.sunday));
+        mItems.add(new Item("", R.drawable.bg_timer));
     }
 
     @Override
     public int getCount() {
-        return mDataList.size();
+        return mItems.size();
     }
 
     @Override
@@ -47,24 +51,42 @@ public class GridItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder listViewHolder;
-        if(convertView == null){
+        if (convertView == null) {
             listViewHolder = new ViewHolder();
             convertView = mLayoutInflater.inflate(R.layout.grid_item, parent, false);
             listViewHolder.textInListView = (TextView) convertView.findViewById(R.id.txt_gird_item);
-            listViewHolder.imageInListView = (ImageView)convertView.findViewById(R.id.grid_item_img);
+            listViewHolder.imageInListView = (ImageView) convertView.findViewById(R.id.img_grid_item);
             convertView.setTag(listViewHolder);
-        }else{
-            listViewHolder = (ViewHolder)convertView.getTag();
+        } else {
+            listViewHolder = (ViewHolder) convertView.getTag();
         }
 
-        listViewHolder.textInListView.setText(mDataList.get(position).getDay());
-        listViewHolder.imageInListView.setImageResource(mDataList.get(position).getImageRecourse());
+        listViewHolder.textInListView.setText(mItems.get(position).getName());
+        listViewHolder.imageInListView.setImageResource(mItems.get(position).getDrawableId());
 
         return convertView;
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         TextView textInListView;
         ImageView imageInListView;
+    }
+
+    private static class Item {
+        private final String name;
+        private final int drawableId;
+
+        Item(String name, int drawableId) {
+            this.name = name;
+            this.drawableId = drawableId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getDrawableId() {
+            return drawableId;
+        }
     }
 }

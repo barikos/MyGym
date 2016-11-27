@@ -15,9 +15,10 @@ import com.main.mygym.util.DBHelper;
 /**
  * Created by barikos on 21.11.16.
  */
-public class CategoryContentProvider extends ContentProvider{
+public class CategoryContentProvider extends ContentProvider {
 
     private static final UriMatcher uriMather;
+
     static {
         uriMather = new UriMatcher(UriMatcher.NO_MATCH);
         uriMather.addURI(Contract.AUTHORITY, Contract.EXERCISES_PATH, Contract.URI_EXERCISES);
@@ -37,7 +38,7 @@ public class CategoryContentProvider extends ContentProvider{
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         mDB = mDBHelper.getWritableDatabase();
-        switch (uriMather.match(uri)){
+        switch (uriMather.match(uri)) {
             case Contract.URI_EXERCISES:
                 //do nothing
                 break;
@@ -47,7 +48,7 @@ public class CategoryContentProvider extends ContentProvider{
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
-        Cursor cursor = mDB.query(DBHelper.TABLE_EXERCISES,projection,selection,selectionArgs,null,null,sortOrder);
+        Cursor cursor = mDB.query(DBHelper.TABLE_EXERCISES, projection, selection, selectionArgs, null, null, sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(), Contract.CONTENT_URI);
         return cursor;
     }
@@ -57,7 +58,7 @@ public class CategoryContentProvider extends ContentProvider{
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         mDB = mDBHelper.getWritableDatabase();
-        switch (uriMather.match(uri)){
+        switch (uriMather.match(uri)) {
             case Contract.URI_EXERCISES:
                 //do nothing
                 break;
@@ -82,14 +83,14 @@ public class CategoryContentProvider extends ContentProvider{
                         (!TextUtils.isEmpty(selection) ? "AND (" + selection + ')' : "");
         }
         int cnt = mDB.delete(DBHelper.TABLE_EXERCISES, selection, selectionArgs);
-        getContext().getContentResolver().notifyChange(uri,null);
+        getContext().getContentResolver().notifyChange(uri, null);
         return cnt;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         mDB = mDBHelper.getWritableDatabase();
-        switch (uriMather.match(uri)){
+        switch (uriMather.match(uri)) {
             case Contract.URI_EXERCISES:
                 //do nothing
                 break;
@@ -100,15 +101,15 @@ public class CategoryContentProvider extends ContentProvider{
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
-        int updateCount = mDB.update(DBHelper.TABLE_EXERCISES,values,selection,selectionArgs);
-        getContext().getContentResolver().notifyChange(uri,null);
+        int updateCount = mDB.update(DBHelper.TABLE_EXERCISES, values, selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
         return updateCount;
     }
 
     @Nullable
     @Override
     public String getType(Uri uri) {
-        switch (uriMather.match(uri)){
+        switch (uriMather.match(uri)) {
             case Contract.URI_EXERCISES:
                 return "vnd.android.cursor.dir/vnd." + Contract.AUTHORITY + "." + Contract.EXERCISES_PATH;
             case Contract.URI_EXERCISE_ID:

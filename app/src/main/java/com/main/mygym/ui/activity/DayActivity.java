@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.main.mygym.Const;
 import com.main.mygym.R;
@@ -22,14 +23,17 @@ import com.main.mygym.adapter.ExercisesCursorAdapter;
 import com.main.mygym.provider.Contract;
 import com.main.mygym.ui.fragment.DayDialogFragment;
 
-public class DayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class DayActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Button mButton;
     private String mTitle;
     private Toolbar mToolbar;
+    private TextView mToolbarTitle;
+    private ImageView mToolbarAdd;
+    private ImageView mToolbarBack;
     private LinearLayout mHolder;
     private ListView mListView;
-    private ImageView mToolbarImg;
 
     private ExercisesCursorAdapter mAdapter;
 
@@ -40,31 +44,42 @@ public class DayActivity extends AppCompatActivity implements LoaderManager.Load
 
         mTitle = getIntent().getStringExtra(Const.KEY_EXTRA_DAY);
         mToolbar = (Toolbar) findViewById(R.id.day_tool_bar);
-        mToolbarImg = (ImageView) mToolbar.findViewById(R.id.img_toolbar);
+        mToolbarAdd = (ImageView) mToolbar.findViewById(R.id.img_toolbar_add);
+        mToolbarBack = (ImageView) mToolbar.findViewById(R.id.img_toolbar_back);
+        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.txt_toolbar_title);
         mButton = (Button) findViewById(R.id.btn_fragment_placeholder);
         mHolder = (LinearLayout) findViewById(R.id.day_placeholder);
         mListView = (ListView) findViewById(R.id.day_list_view);
         mAdapter = new ExercisesCursorAdapter(this, null, 0);
         mListView.setAdapter(mAdapter);
+
+        mToolbarTitle.setText(mTitle);
+        mToolbarAdd.setImageResource(R.drawable.ic_add);
+        mToolbarBack.setImageResource(R.drawable.ic_back);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         getSupportLoaderManager().initLoader(Contract.LOADER_ID, null, this);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
-        mToolbarImg.setImageResource(R.drawable.ic_add);
 
-        mToolbar.setTitle(mTitle);
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startCategoriesActivity();
             }
         });
-        mToolbarImg.setOnClickListener(new View.OnClickListener() {
+        mToolbarBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        mToolbarAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startCategoriesActivity();
@@ -109,7 +124,7 @@ public class DayActivity extends AppCompatActivity implements LoaderManager.Load
 
     private void showDialog(long id, String name) {
         DialogFragment dialog = DayDialogFragment.getInstance(id, name);
-        dialog.show(getSupportFragmentManager(), "dialog");
+        dialog.show(getSupportFragmentManager(), "dialog_day");
     }
 
 }

@@ -7,4 +7,5 @@
     <dimen name="txt_recycler_item">20sp</dimen>
 
     <dimen name="day_dialog_corner">10dp</dimen>
+    <dimen name="img_toolbar">40dp</dimen>
 </resources>

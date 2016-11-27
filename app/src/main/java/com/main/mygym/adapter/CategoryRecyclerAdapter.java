@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.main.mygym.R;
 import com.main.mygym.api.response.Category;
@@ -42,12 +41,6 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.txt_recycler_view_item);
             imageView = (ImageView) itemView.findViewById(R.id.img_recycle_view_item);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "text", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 

@@ -14,14 +14,11 @@ import android.widget.Toast;
 import com.main.mygym.Const;
 import com.main.mygym.R;
 import com.main.mygym.adapter.GridItemAdapter;
-import com.main.mygym.ui.DayModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+    private TextView mToolbarTitle;
     private ImageView mToolbarImage;
     private GridView mGridView;
     private GridItemAdapter mAdapter;
@@ -32,22 +29,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mGridView = (GridView) findViewById(R.id.main_grid_view);
-        mToolbar = (Toolbar)findViewById(R.id.main_tool_bar);
-        mToolbarImage = (ImageView) mToolbar.findViewById(R.id.img_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.main_tool_bar);
+        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.txt_toolbar_title);
+        mToolbarImage = (ImageView) mToolbar.findViewById(R.id.img_toolbar_add);
+
         setSupportActionBar(mToolbar);
+        mToolbarTitle.setText(R.string.app_name);
+        mToolbarImage.setImageResource(R.drawable.ic_about);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        mToolbarImage.setImageResource(R.drawable.ic_about);
-        mAdapter = new GridItemAdapter(this,getDayList());
+        mAdapter = new GridItemAdapter(this);
         mGridView.setAdapter(mAdapter);
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 7:
                         Toast.makeText(MainActivity.this, R.string.creating, Toast.LENGTH_SHORT).show();
                         break;
@@ -61,17 +62,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    private List<DayModel> getDayList(){
-        List<DayModel> arrayList = new ArrayList<DayModel>();
-        arrayList.add(new DayModel().setDay(R.string.monday).setImageRecourse(R.drawable.monday));
-        arrayList.add(new DayModel().setDay(R.string.tuesday).setImageRecourse(R.drawable.tuesday));
-        arrayList.add(new DayModel().setDay(R.string.wednesday).setImageRecourse(R.drawable.wednesday));
-        arrayList.add(new DayModel().setDay(R.string.thursday).setImageRecourse(R.drawable.thursday));
-        arrayList.add(new DayModel().setDay(R.string.friday).setImageRecourse(R.drawable.friday));
-        arrayList.add(new DayModel().setDay(R.string.saturday).setImageRecourse(R.drawable.saturday));
-        arrayList.add(new DayModel().setDay(R.string.sunday).setImageRecourse(R.drawable.sunday));
-        arrayList.add(new DayModel().setDay(R.string.nothing).setImageRecourse(R.drawable.bg_timer));
-        return arrayList;
-    }
 }

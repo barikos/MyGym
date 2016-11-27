@@ -22,6 +22,5 @@ public class Contract {
     public static final String[] DEFAULT_PROJECTION = {DBHelper.KEY_EX_ID, DBHelper.KEY_EX_NAME};
 
     public static final int LOADER_ID = 0;
-    public static final int LOADER_F_ID = 1;
 
 }

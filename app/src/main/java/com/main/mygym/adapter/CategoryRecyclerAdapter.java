@@ -23,10 +23,15 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     private List<Category> mCategoryList;
     private String mDay;
+    private OnTextClickListener mOnTextClickListener;
 
     public CategoryRecyclerAdapter(List<Category> categoryList, String day) {
         mCategoryList = categoryList;
         mDay = day;
+    }
+
+    public interface OnTextClickListener {
+        void onTextClick(String name);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -43,12 +48,6 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                     Toast.makeText(itemView.getContext(), "text", Toast.LENGTH_SHORT).show();
                 }
             });
-           /* imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "image", Toast.LENGTH_SHORT).show();
-                }
-            });*/
         }
     }
 
@@ -59,17 +58,28 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         Category category = mCategoryList.get(position);
-        holder.textView.setText(category.getName());
+        final String text = category.getName();
+        holder.textView.setText(text);
         holder.imageView.setImageResource(R.drawable.ic_add);
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ContentValues cv = new ContentValues();
-                cv.put(DBHelper.KEY_EX_NAME, holder.textView.getText().toString());
+                cv.put(DBHelper.KEY_EX_NAME, text);
                 cv.put(DBHelper.KEY_EX_DAY, mDay);
                 v.getContext().getContentResolver().insert(Contract.CONTENT_URI, cv);
+                mCategoryList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, mCategoryList.size());
+            }
+        });
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnTextClickListener.onTextClick(text);
             }
         });
     }
@@ -79,5 +89,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         return mCategoryList.size();
     }
 
+    public void setCategoryList(List<Category> categoryList) {
+        mCategoryList = categoryList;
+    }
 
+    public void setOnTextClickListener(OnTextClickListener listener) {
+        mOnTextClickListener = listener;
+    }
 }

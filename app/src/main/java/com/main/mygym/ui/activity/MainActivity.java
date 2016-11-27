@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+    private ImageView mToolbarImage;
     private GridView mGridView;
     private GridItemAdapter mAdapter;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         mGridView = (GridView) findViewById(R.id.main_grid_view);
         mToolbar = (Toolbar)findViewById(R.id.main_tool_bar);
+        mToolbarImage = (ImageView) mToolbar.findViewById(R.id.img_toolbar);
         setSupportActionBar(mToolbar);
     }
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        mToolbarImage.setImageResource(R.drawable.ic_about);
         mAdapter = new GridItemAdapter(this,getDayList());
         mGridView.setAdapter(mAdapter);
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,15 +52,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, R.string.creating, Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        TextView textView = (TextView)view.findViewById(R.id.gird_item_txt);
+                        TextView textView = (TextView) view.findViewById(R.id.txt_gird_item);
                         String text = textView.getText().toString();
                         startActivity(new Intent(MainActivity.this, DayActivity.class).putExtra(Const.KEY_EXTRA_DAY, text));
                         break;
                 }
             }
         });
-
     }
+
 
     private List<DayModel> getDayList(){
         List<DayModel> arrayList = new ArrayList<DayModel>();

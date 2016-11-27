@@ -9,7 +9,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/main_light_black</item>
 
-        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
 
     </style>
 

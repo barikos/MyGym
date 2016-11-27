@@ -50,7 +50,7 @@ public class GridItemAdapter extends BaseAdapter {
         if(convertView == null){
             listViewHolder = new ViewHolder();
             convertView = mLayoutInflater.inflate(R.layout.grid_item, parent, false);
-            listViewHolder.textInListView = (TextView)convertView.findViewById(R.id.gird_item_txt);
+            listViewHolder.textInListView = (TextView) convertView.findViewById(R.id.txt_gird_item);
             listViewHolder.imageInListView = (ImageView)convertView.findViewById(R.id.grid_item_img);
             convertView.setTag(listViewHolder);
         }else{
